@@ -36,12 +36,12 @@ If Maven wrapper works in your environment, you can also use:
 The API runs on:
 
 ```text
-http://localhost:8080
+http://localhost:8080/api/v1
 ```
 
 ## API Documentation
 
-### `POST /monitors`
+### `POST /api/v1/monitors`
 
 Registers a new monitor and starts its countdown timer.
 
@@ -51,7 +51,7 @@ Request:
 {
   "id": "device-123",
   "timeout": 60,
-  "alert_email": "admin@critmon.com"
+  "alert_email": "kabano@critmon.com"
 }
 ```
 
@@ -63,13 +63,13 @@ Response: `201 Created`
   "monitor": {
     "id": "device-123",
     "timeout": 60,
-    "alert_email": "admin@critmon.com",
+    "alert_email": "kabano@critmon.com",
     "status": "active"
   }
 }
 ```
 
-### `POST /monitors/{id}/heartbeat`
+### `POST /api/v1/monitors/{id}/heartbeat`
 
 Resets the timer and keeps the device marked as active. If the monitor was paused, heartbeat automatically resumes monitoring.
 
@@ -85,7 +85,7 @@ Response: `200 OK`
 }
 ```
 
-### `POST /monitors/{id}/pause`
+### `POST /api/v1/monitors/{id}/pause`
 
 Pauses monitoring so no alert fires while maintenance is in progress.
 
@@ -101,13 +101,13 @@ Response: `200 OK`
 }
 ```
 
-### `GET /monitors`
+### `GET /api/v1/monitors`
 
 Returns all registered monitors.
 
 Response: `200 OK`
 
-### `GET /monitors/{id}`
+### `GET /api/v1/monitors/{id}`
 
 Returns the current state of a single monitor, including status, expiry, and remaining seconds.
 
@@ -118,7 +118,7 @@ Response: `200 OK`
 When a monitor expires without receiving a heartbeat, the service logs an alert like:
 
 ```json
-{"ALERT":"Device device-123 is down!","time":"2026-04-26T10:13:08Z","alert_email":"admin@critmon.com"}
+{"ALERT":"Device device-123 is down!","time":"2026-04-26T10:13:08Z","alert_email":"kabano@critmon.com"}
 ```
 
 The monitor status is updated to `down`.
@@ -140,8 +140,8 @@ The monitor status is updated to `down`.
 
 I added **read endpoints for monitor visibility**:
 
-- `GET /monitors`
-- `GET /monitors/{id}`
+- `GET /api/v1/monitors`
+- `GET /api/v1/monitors/{id}`
 
 Why this improves the system:
 
