@@ -1,1 +1,10 @@
-services: {}
+services:
+  idempotency-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: idempotency-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      PAYMENT_PROCESSING_DELAY_MS: "2000"
