@@ -6,7 +6,7 @@ This repository contains my Spring Boot solutions for the AmaliTech DEG project-
 
 ```text
 backend/
-  idempotency-gateway/
+  Idempotency-gateway/
   Pulse-Check/
   docs/
 ```
@@ -20,12 +20,12 @@ A pay-once payment API that prevents duplicate charges by using an `Idempotency-
 Location:
 
 ```text
-backend/idempotency-gateway
+backend/Idempotency-gateway
 ```
 
 Project documentation:
 
-- [Idempotency Gateway README](./backend/idempotency-gateway/README.md)
+- [Idempotency Gateway README](./backend/Idempotency-gateway/README.md)
 
 ### 2. Pulse-Check API
 
@@ -56,7 +56,7 @@ Each project runs independently.
 ### Idempotency Gateway
 
 ```bash
-cd backend/idempotency-gateway
+cd backend/Idempotency-gateway
 mvn spring-boot:run
 ```
 
@@ -88,7 +88,7 @@ Prerequisite: make sure Docker Desktop or Docker Engine is running.
 ### Idempotency Gateway with Docker Compose
 
 ```bash
-cd backend/idempotency-gateway
+cd backend/Idempotency-gateway
 docker compose up --build
 ```
 
@@ -104,7 +104,7 @@ docker compose up --build
 Idempotency Gateway:
 
 ```bash
-cd backend/idempotency-gateway
+cd backend/Idempotency-gateway
 docker build -t idempotency-gateway .
 docker run -p 8080:8080 idempotency-gateway
 ```
