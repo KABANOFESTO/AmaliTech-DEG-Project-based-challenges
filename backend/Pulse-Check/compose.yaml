@@ -1,1 +1,10 @@
-services: {}
+services:
+  pulse-check:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pulse-check
+    ports:
+      - "8080:8080"
+    environment:
+      MONITOR_SCAN_INTERVAL_MS: "1000"
