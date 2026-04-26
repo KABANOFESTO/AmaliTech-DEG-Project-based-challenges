@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -39,6 +40,15 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.joining("; "));
 
         return buildErrorResponse(HttpStatus.BAD_REQUEST, message);
+    }
+
+    @ExceptionHandler(MissingRequestHeaderException.class)
+    public ResponseEntity<ErrorResponse> handleMissingRequestHeader(MissingRequestHeaderException exception) {
+        if ("Idempotency-Key".equalsIgnoreCase(exception.getHeaderName())) {
+            return buildErrorResponse(HttpStatus.BAD_REQUEST, "Idempotency-Key header is required.");
+        }
+
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
     private String formatFieldError(FieldError fieldError) {
