@@ -17,11 +17,12 @@ Pulse-Check implements a dead man's switch pattern for unreliable environments. 
 - Bean Validation
 - In-memory `ConcurrentHashMap`
 - Scheduled monitor scanning
+- Docker
 
 ## Setup Instructions
 
 1. Open a terminal in `backend/Pulse-Check`
-2. Start the application:
+2. Start the application locally:
 
 ```bash
 mvn spring-boot:run
@@ -37,6 +38,29 @@ The API runs on:
 
 ```text
 http://localhost:8080/api/v1
+```
+
+### Start with Docker
+
+Prerequisite: make sure Docker Desktop or Docker Engine is running.
+
+Build and run with Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+Or build and run manually:
+
+```bash
+docker build -t pulse-check .
+docker run -p 8080:8080 pulse-check
+```
+
+Stop the containerized application:
+
+```bash
+docker compose down
 ```
 
 ## API Documentation
