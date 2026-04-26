@@ -1,31 +1,131 @@
-# DEG Project Challenges
+# AmaliTech DEG Backend Challenges
 
-This repository contains the DEG training project challenges across multiple tracks:
+This repository contains my Spring Boot solutions for the AmaliTech DEG project-based backend challenges.
 
-- Backend
-- Data Engineering
-- Fullstack
-- QA
-- DevOps
+## Repository Structure
 
-Each challenge is self-contained inside its folder and includes its own README with task details.
+```text
+backend/
+  idempotency-gateway/
+  Pulse-Check/
+  docs/
+```
 
-## Applicant Guide
+## Projects
 
-If you are applying, start by choosing the challenge folder that matches your track or assigned task. Then open the README inside that folder.
+### 1. Idempotency Gateway
 
-The challenge-specific README files include:
+A pay-once payment API that prevents duplicate charges by using an `Idempotency-Key` header to safely replay previous responses.
 
-- Challenge description and requirements
-- Expected deliverables
-- Submission guidelines and deadlines (where applicable)
-- Any setup instructions or constraints
+Location:
 
-## Where To Start
+```text
+backend/idempotency-gateway
+```
 
-1. Open the relevant track folder (for example, `backend/`, `data-engineering/`, or `fullstack/`).
-2. Enter the challenge project folder.
-3. Read that project's `README.md` completely before starting work.
-4. Follow the listed deliverables and submission instructions exactly.
+Project documentation:
 
-If instructions differ between this root README and a challenge README, treat the challenge README as the source of truth.
+- [Idempotency Gateway README](./backend/idempotency-gateway/README.md)
+
+### 2. Pulse-Check API
+
+A watchdog monitoring API that tracks device heartbeats, pauses monitoring during maintenance, and marks devices as down when their timers expire.
+
+Location:
+
+```text
+backend/Pulse-Check
+```
+
+Project documentation:
+
+- [Pulse-Check README](./backend/Pulse-Check/README.md)
+
+## Tech Stack
+
+- Java 17
+- Spring Boot
+- REST APIs
+- Maven
+- Docker
+
+## Local Start Guide
+
+Each project runs independently.
+
+### Idempotency Gateway
+
+```bash
+cd backend/idempotency-gateway
+mvn spring-boot:run
+```
+
+API base:
+
+```text
+http://localhost:8080
+```
+
+### Pulse-Check
+
+```bash
+cd backend/Pulse-Check
+mvn spring-boot:run
+```
+
+API base:
+
+```text
+http://localhost:8080/api/v1
+```
+
+If Maven wrapper works in your environment, you can also use `./mvnw spring-boot:run` inside either project.
+
+## Docker Start Guide
+
+Prerequisite: make sure Docker Desktop or Docker Engine is running.
+
+### Idempotency Gateway with Docker Compose
+
+```bash
+cd backend/idempotency-gateway
+docker compose up --build
+```
+
+### Pulse-Check with Docker Compose
+
+```bash
+cd backend/Pulse-Check
+docker compose up --build
+```
+
+### Manual Docker Build
+
+Idempotency Gateway:
+
+```bash
+cd backend/idempotency-gateway
+docker build -t idempotency-gateway .
+docker run -p 8080:8080 idempotency-gateway
+```
+
+Pulse-Check:
+
+```bash
+cd backend/Pulse-Check
+docker build -t pulse-check .
+docker run -p 8080:8080 pulse-check
+```
+
+### Stop Containers
+
+Run this from the active project directory:
+
+```bash
+docker compose down
+```
+
+## Notes
+
+- Run one project at a time if both are mapped to port `8080`
+- Each project has its own architecture diagram, API documentation, and setup guide inside its dedicated README
