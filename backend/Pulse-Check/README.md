@@ -40,29 +40,6 @@ The API runs on:
 http://localhost:8080/api/v1
 ```
 
-### Start with Docker
-
-Prerequisite: make sure Docker Desktop or Docker Engine is running.
-
-Build and run with Docker Compose:
-
-```bash
-docker compose up --build
-```
-
-Or build and run manually:
-
-```bash
-docker build -t pulse-check .
-docker run -p 8080:8080 pulse-check
-```
-
-Stop the containerized application:
-
-```bash
-docker compose down
-```
-
 ## API Documentation
 
 ### `POST /api/v1/monitors`
@@ -152,6 +129,29 @@ The monitor status is updated to `down`.
 - `400 Bad Request` for invalid input
 - `404 Not Found` when a monitor does not exist
 - `409 Conflict` when registering a duplicate monitor id
+
+### Use Docker
+
+Prerequisite: Sir make sure Docker Desktop or Docker Engine is running.
+
+Build and run with Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+Or build and run manually:
+
+```bash
+docker build -t pulse-check .
+docker run -p 8080:8080 pulse-check
+```
+
+Stop the containerized application:
+
+```bash
+docker compose down
+```
 
 ## Design Decisions
 
