@@ -19,7 +19,7 @@ import rw.Pulse_Check.Pulse_Check.dto.response.MonitorResponse;
 import rw.Pulse_Check.Pulse_Check.service.MonitorService;
 
 @RestController
-@RequestMapping("/monitors")
+@RequestMapping("/api/v1/monitors")
 public class MonitorController {
 
     private final MonitorService monitorService;
@@ -32,7 +32,7 @@ public class MonitorController {
     public ResponseEntity<MonitorActionResponse> registerMonitor(
             @Valid @RequestBody MonitorRegistrationRequest request) {
         MonitorActionResponse response = monitorService.registerMonitor(request);
-        URI location = URI.create("/monitors/" + response.monitor().id());
+        URI location = URI.create("/api/v1/monitors/" + response.monitor().id());
 
         return ResponseEntity.created(location).body(response);
     }
