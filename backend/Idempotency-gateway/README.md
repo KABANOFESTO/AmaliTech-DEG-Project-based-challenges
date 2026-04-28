@@ -32,6 +32,12 @@ If Maven wrapper works in your environment, you can also use:
 ./mvnw spring-boot:run
 ```
 
+If Docker was used previously, stop the container first so local Tomcat can use port `8080`:
+
+```bash
+docker compose down
+```
+
 The API runs on:
 
 ```text
@@ -41,6 +47,8 @@ http://localhost:8080
 ### Start with Docker
 
 Prerequisite: make sure Docker Desktop or Docker Engine is running.
+
+Use Docker mode as an alternative to local Maven startup. Do not run `mvn spring-boot:run` and `docker compose up` at the same time on the same port.
 
 Build and run with Docker Compose:
 
